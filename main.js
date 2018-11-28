@@ -1,6 +1,6 @@
 window.addEventListener('load', () => {
-    document.getElementById('status').innerHTML = 'status';
-    document.getElementById('output-el').innerHTML = 'output-el';
+    document.getElementById('status').innerHTML = 'status:<br>';
+    document.getElementById('output-el').innerHTML = 'output-el:<br>';
 });
 
 window.addEventListener('load', () => {
@@ -26,9 +26,8 @@ window.addEventListener('load', () => {
             document.getElementById('status').innerHTML += '<br>Read message written by ' + message.url;
             processMessage(message);
         }
-    }).then(() => {
+    }, {mode: 'any'}).then(() => {
         document.getElementById('status').innerHTML += "<br>Added a watch.";
-        alert("Added a watch.");
     }).catch((error) => {
         document.getElementById('status').innerHTML += "<br>Adding watch failed: " + error.name;
         alert("Adding watch failed: " + error.name);

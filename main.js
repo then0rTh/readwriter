@@ -1,5 +1,5 @@
-alert('main.js');
 document.getElementById('status').innerHTML = 'status';
+document.getElementById('output-el').innerHTML = 'output-el';
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('worker.js')
     .then(function (reg) {
@@ -26,10 +26,10 @@ navigator.nfc.watch((message) => {
   }
 }).then(() => {
     document.getElementById('status').innerHTML = "Added a watch.";
-    console.log("Added a watch.");
+    alert("Added a watch.");
 }).catch((error) => {
     document.getElementById('status').innerHTML = "Adding watch failed: " + error.name;
-    console.log("Adding watch failed: " + error.name);
+    alert("Adding watch failed: " + error.name);
 });
 
 function processMessage(message) {

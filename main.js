@@ -20,6 +20,7 @@ window.addEventListener('load', () => {
     document.getElementById('status').innerHTML += '<br>nfc' in navigator ? 'found' : 'not found';
     navigator.nfc.watch((message) => {
         // alert('message');
+        document.getElementById('output-el').innerHTML += '<br>' + String(message);
         document.getElementById('output-el').innerHTML += '<br>' + JSON.dump(message);
         // if (message.records[0].recordType == 'empty') {
         //     document.getElementById('status').innerHTML += '<br>empty';

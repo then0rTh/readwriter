@@ -1,9 +1,9 @@
-document.addEventListener('load', () => {
+window.addEventListener('load', () => {
     document.getElementById('status').innerHTML = 'status';
     document.getElementById('output-el').innerHTML = 'output-el';
 });
 
-document.addEventListener('load', () => {
+window.addEventListener('load', () => {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('worker.js')
         .then(function (reg) {
@@ -16,7 +16,7 @@ document.addEventListener('load', () => {
     }
 });
 
-document.addEventListener('load', () => {
+window.addEventListener('load', () => {
     document.getElementById('status').innerHTML = 'nfc' in navigator ? 'found' : 'not found';
     navigator.nfc.watch((message) => {
       const el = document.getElementById('status');

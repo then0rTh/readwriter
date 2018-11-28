@@ -19,13 +19,14 @@ window.addEventListener('load', () => {
 window.addEventListener('load', () => {
     document.getElementById('status').innerHTML += '<br>nfc' in navigator ? 'found' : 'not found';
     navigator.nfc.watch((message) => {
-        alert('message');
-        if (message.records[0].recordType == 'empty') {
-            document.getElementById('status').innerHTML += '<br>empty';
-        } else {
-            document.getElementById('status').innerHTML += '<br>Read message written by ' + message.url;
-            processMessage(message);
-        }
+        // alert('message');
+        document.getElementById('output-el').innerHTML += '<br>' + JSON.dump(message);
+        // if (message.records[0].recordType == 'empty') {
+        //     document.getElementById('status').innerHTML += '<br>empty';
+        // } else {
+        //     document.getElementById('status').innerHTML += '<br>Read message written by ' + message.url;
+        //     processMessage(message);
+        // }
     }, {mode: 'any'}).then(() => {
         document.getElementById('status').innerHTML += "<br>Added a watch.";
     }).catch((error) => {

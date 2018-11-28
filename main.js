@@ -19,12 +19,13 @@ window.addEventListener('load', () => {
 window.addEventListener('load', () => {
     document.getElementById('status').innerHTML += '<br>nfc' in navigator ? 'found' : 'not found';
     navigator.nfc.watch((message) => {
-      if (message.records[0].recordType == 'empty') {
-          document.getElementById('status').innerHTML += '<br>empty';
-      } else {
-          document.getElementById('status').innerHTML += '<br>Read message written by ' + message.url;
-          processMessage(message);
-      }
+        alert('message');
+        if (message.records[0].recordType == 'empty') {
+            document.getElementById('status').innerHTML += '<br>empty';
+        } else {
+            document.getElementById('status').innerHTML += '<br>Read message written by ' + message.url;
+            processMessage(message);
+        }
     }).then(() => {
         document.getElementById('status').innerHTML += "<br>Added a watch.";
         alert("Added a watch.");

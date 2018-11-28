@@ -17,24 +17,19 @@ window.addEventListener('load', () => {
 });
 
 window.addEventListener('load', () => {
-    document.getElementById('status').innerHTML = 'nfc' in navigator ? 'found' : 'not found';
+    document.getElementById('status').innerHTML += '<br>nfc' in navigator ? 'found' : 'not found';
     navigator.nfc.watch((message) => {
-      const el = document.getElementById('status');
       if (message.records[0].recordType == 'empty') {
-          el.innerHTML = 'empty';
-        // navigator.nfc.push({
-        //   url: "/custom/path",
-        //   records: [{ recordType: "text", data: 'Hello World' }]
-        // });
+          document.getElementById('status').innerHTML += '<br>empty';
       } else {
-        el.innerHTML = 'Read message written by ' + message.url;
-        processMessage(message);
+          document.getElementById('status').innerHTML += '<br>Read message written by ' + message.url;
+          processMessage(message);
       }
     }).then(() => {
-        document.getElementById('status').innerHTML = "Added a watch.";
+        document.getElementById('status').innerHTML += "<br>Added a watch.";
         alert("Added a watch.");
     }).catch((error) => {
-        document.getElementById('status').innerHTML = "Adding watch failed: " + error.name;
+        document.getElementById('status').innerHTML += "<br>Adding watch failed: " + error.name;
         alert("Adding watch failed: " + error.name);
     });
 });
@@ -44,13 +39,13 @@ function processMessage(message) {
     for (let record of message.records) {
         switch (record.recordType) {
             case "text":
-                el.innerHTML = 'Data is text: ' + record.data;
+                el.innerHTML += '<br>Data is text: ' + record.data;
                 break;
             case "url":
-                el.innerHTML = 'Data is URL: ' + record.data;
+                el.innerHTML += '<br>Data is URL: ' + record.data;
                 break;
             case "json":
-                el.innerHTML = 'JSON data: ' + record.data.myProperty.toString();
+                el.innerHTML += '<br>JSON data: ' + record.data.myProperty.toString();
                 break;
         }
     }

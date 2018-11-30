@@ -20,8 +20,8 @@ window.addEventListener('load', () => {
     document.getElementById('status').innerHTML += 'nfc' in navigator ? 'NFC found' : 'NFC not found';
     navigator.nfc.watch((message) => {
         // alert('message');
-        document.getElementById('output-el').innerHTML += '<br>' + String(message);
-        document.getElementById('output-el').innerHTML += '<br>' + JSON.dump(Object.keys(message));
+        document.getElementById('output-el').innerHTML += '<br>' + String(message.url) + ':';
+        document.getElementById('output-el').innerHTML += '<br>' + JSON.stringify(message.records);
         // if (message.records[0].recordType == 'empty') {
         //     document.getElementById('status').innerHTML += '<br>empty';
         // } else {

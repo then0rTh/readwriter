@@ -17,11 +17,11 @@ window.addEventListener('load', () => {
 });
 
 window.addEventListener('load', () => {
-    document.getElementById('status').innerHTML += '<br>nfc' in navigator ? 'found' : 'not found';
+    document.getElementById('status').innerHTML += 'nfc' in navigator ? 'NFC found' : 'NFC not found';
     navigator.nfc.watch((message) => {
         // alert('message');
         document.getElementById('output-el').innerHTML += '<br>' + String(message);
-        document.getElementById('output-el').innerHTML += '<br>' + JSON.dump(message);
+        document.getElementById('output-el').innerHTML += '<br>' + JSON.dump(Object.keys(message));
         // if (message.records[0].recordType == 'empty') {
         //     document.getElementById('status').innerHTML += '<br>empty';
         // } else {

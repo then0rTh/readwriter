@@ -17,12 +17,19 @@ window.addEventListener('load', () => {
 });
 
 window.addEventListener('load', () => {
+    const msg = load();
+    if (msg)
+        storedMsg = msg;
+}
+
+window.addEventListener('load', () => {
     document.getElementById('status').innerHTML += 'nfc' in navigator ? 'NFC found' : 'NFC not found';
     navigator.nfc.watch((message) => {
         // alert('message');
         // document.getElementById('output-el').innerHTML += '<br>' + String(message.url) + ':';
         document.getElementById('output-el').innerHTML += '<br>' + JSON.stringify(message);
         storedMsg = message;
+        message && save(message);
         // if (message.records[0].recordType == 'empty') {
         //     document.getElementById('status').innerHTML += '<br>empty';
         // } else {
@@ -56,6 +63,17 @@ function processMessage(message) {
 
 storedMsg = null;
 
+function save(msg) {
+    if (typeof msg !== 'string')
+        msg = JSON.stringify(msg);
+    localStorage.setItem('tag', msg);
+}
+
+function load() {
+    const msg = localStorage.getItem('tag');
+    return msg && JSON.parse(msg);
+}
+
 
 function push(msg) {
     navigator.nfc.push(msg)
@@ -64,4 +82,8 @@ function push(msg) {
     }).catch((error) => {
       document.getElementById('status').innerHTML += "<br>Push failed :-( try again.";
     });
+}
+
+function pushStoredMsg() {
+    storedMsg && push(storedMsg);
 }

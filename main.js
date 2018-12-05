@@ -20,7 +20,7 @@ window.addEventListener('load', () => {
     const msg = load();
     if (msg)
         storedMsg = msg;
-}
+});
 
 window.addEventListener('load', () => {
     document.getElementById('status').innerHTML += 'nfc' in navigator ? 'NFC found' : 'NFC not found';
